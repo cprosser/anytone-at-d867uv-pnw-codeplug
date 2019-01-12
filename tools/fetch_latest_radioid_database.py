@@ -30,6 +30,21 @@ all_contacts['No.'] = np.arange(1, len(all_contacts) + 1)
 all_contacts['Call Type'] = "Private Call"
 all_contacts['Call Alert'] = "None"
 
+all_contacts['Name'] = all_contacts['Name'].str[:16].str.strip()
+all_contacts['City'] = all_contacts['City'].str[:15].str.strip()
+all_contacts['State'] = all_contacts['State'].str[:16].str.strip()
+all_contacts['Country'] = all_contacts['Country'].str[:16].str.strip()
+all_contacts['Remarks'] = all_contacts['Remarks'].str[:16].str.strip()
+
+w = all_contacts[all_contacts['Callsign']=='VE3VGN']
+
+# Name is max 16 chars
+# Perry Marvin Rub
+# Change the order to match export so diffs will work
+correct_columns = ["No.","Radio ID","Callsign","Name","City","State","Country","Remarks","Call Type","Call Alert"]
+all_contacts = all_contacts.reindex(columns=correct_columns)
+
+
 csv_path = os.path.join(script_dir, "../csv_files/DigitalContactList.CSV")
 
 # CPS parser will split on the space between first and last name
