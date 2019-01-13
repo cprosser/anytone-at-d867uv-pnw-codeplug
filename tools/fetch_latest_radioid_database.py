@@ -46,7 +46,18 @@ all_contacts = all_contacts.reindex(columns=correct_columns)
 
 
 csv_path = os.path.join(script_dir, "../csv_files/DigitalContactList.CSV")
+csv_path_gen = os.path.join(script_dir, "../csv_files/DigitalContactListGenerated.CSV")
 
 # CPS parser will split on the space between first and last name
 # if strings aren't quoted 
-all_contacts.to_csv(csv_path, index=False, quoting = csv.QUOTE_ALL)
+# This encoding still doesn't round trip correctly. I'm thinking the phone
+# might just do ascii.
+# But that means doing a conversion like
+#https://stackoverflow.com/questions/42302383/error-when-reading-utf-8-characters-with-python
+import unicodedata
+def filt(word):
+    return unicodedata.normalize('NFKD', word).encode('ascii', errors='ignore').decode('ascii')
+
+all_contacts.to_csv(csv_path, index=False, quoting = csv.QUOTE_ALL, encoding="ISO-8859-1")
+# save off the generated copy to make comparisons with CPS roundtrip easier
+all_contacts.to_csv(csv_path_gen, index=False, quoting = csv.QUOTE_ALL, encoding="ISO-8859-1")
