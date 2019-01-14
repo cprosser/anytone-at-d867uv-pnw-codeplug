@@ -25,6 +25,18 @@ Place to get digital contacts instead of my script
 http://www.amateurradio.digital
 
 
+-----
+My customizations from NO7RF
+Last Caller - Show Callsign
+Change default zones and channels to Seattle friendly ones
+Update startup screen to my callsign
+Lower receive backlight delay
+Increase backlight timer to 1 min
+Max Volume -> 1
+Max Headphone -> 4
+Mic Gain -> 5
+
+
 ToDo:
 Look at porting some of the stuff from here: 
 https://www.reddit.com/r/DMR/comments/9zgt32/anytone_d868uv_random_tips_and_tricks/?st=JQRAI2KS&sh=77da0d01
